@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   //declaring a new state variable. hooks
+  const [button3Popup, setButton3Popup] = useState(false);
   const [button2Popup, setButton2Popup] = useState(false);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [timedPopup, setTimedPopup] = useState(false);
@@ -26,6 +27,11 @@ function App() {
   setButton2Popup(true);
 }
 
+function thirdClick(){
+  setButton2Popup(false);
+  setButton3Popup(true);
+}
+
   
 
 
@@ -35,13 +41,21 @@ function App() {
         <main>
             <h1>React Popups</h1>
             <br/><br/>
-            <button onClick={() => setButtonPopup(true)}>Open Popups</button>
+            <button onClick={thirdClick}>Open Popups</button>
            
         </main>
+        
+        <Popup trigger={button3Popup} setTrigger={setButton3Popup}>
+              <h3>my popup</h3>
+              <p>this is the 4th popup</p>
+            
+        </Popup>
+        
         
         <Popup trigger={button2Popup} setTrigger={setButton2Popup}>
               <h3>my popup</h3>
               <p>this is the 3rd popup</p>
+              <button onClick={thirdClick}>Open Popups</button>
             
         </Popup>
               
