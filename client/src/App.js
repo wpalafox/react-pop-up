@@ -2,12 +2,53 @@ import Popup from './components/Popup';
 import { useState, useEffect } from 'react';
 
 function App() {
+  
+  const [form, setForm] = useState({
+    question_one:"",
+    question_two:"",
+    question_three:"",
+    question_four:"",
+  })
+
+   // These methods will update the state properties.
+ function updateForm(value) {
+  return setForm((prev) => {
+    return { ...prev, ...value };
+  });
+}
+
+// This function will handle the submission.
+async function onSubmit(e) {
+  e.preventDefault();
+  console.log(e)
+  // When a post request is sent to the create url, we'll add a new record to the database.
+  const newEntry = { ...form };
+
+  await fetch("http://localhost:5000/record/add", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newEntry),
+  })
+  .catch(error => {
+    window.alert(error);
+    return;
+  });
+
+  setForm({ question_one: "", question_two: "", question_three: "", question_four: ""  });
+  
+}
+  
+  
+  
   //declaring a new state variable. hooks
   const [button3Popup, setButton3Popup] = useState(false);
   const [button2Popup, setButton2Popup] = useState(false);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [timedPopup, setTimedPopup] = useState(false);
 
+ 
  
 
   useEffect(() =>{ 
@@ -17,19 +58,53 @@ function App() {
   }, []);
 
 
- function firstClick(){
+ function firstClickyes(){
     setTimedPopup(false);
+    setForm({ question_one: "yes"});
     setButtonPopup(true);
  }
 
- function secondClick(){
+ function firstClickno(){
+  setTimedPopup(false);
+  setForm({ question_one: "no"});
+  setButtonPopup(true);
+}
+
+ function secondClickyes(){
   setButtonPopup(false);
+  setForm({ question_two: "yes"});
   setButton2Popup(true);
 }
 
-function thirdClick(){
+function secondClickno(){
+  setButtonPopup(false);
+  setForm({ question_two: "no"});
+  setButton2Popup(true);
+}
+
+function thirdClickyes(){
   setButton2Popup(false);
+  setForm({ question_three: "yes"});
   setButton3Popup(true);
+}
+
+function thirdClickno(){
+  setButton2Popup(false);
+  setForm({ question_three: "no"});
+  setButton3Popup(true);
+}
+
+function fourthClickyes(){
+  setButton3Popup(false);
+  setForm({ question_four: "yes"});
+  //onSubmit(form);
+  console.log(form)
+}
+
+function fourthClickno(){
+  setButton3Popup(false);
+  setForm({ question_four: "no"});
+  onSubmit(form);
 }
 
   
@@ -41,34 +116,36 @@ function thirdClick(){
         <main>
             <h1>React Popups</h1>
             <br/><br/>
-            <button onClick={thirdClick}>Open Popups</button>
+           
            
         </main>
         
         <Popup trigger={button3Popup} setTrigger={setButton3Popup}>
-              <h3>my popup</h3>
+              
               <p>this is the 4th popup</p>
+              <button onClick={fourthClickyes}>Yes</button> <button onClick={fourthClickno}>No</button>
             
         </Popup>
         
         
         <Popup trigger={button2Popup} setTrigger={setButton2Popup}>
-              <h3>my popup</h3>
+            
               <p>this is the 3rd popup</p>
-              <button onClick={thirdClick}>Open Popups</button>
+              <button onClick={thirdClickyes}>Yes</button> <button onClick={thirdClickno}>No</button>
             
         </Popup>
               
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-              <h3>my popup</h3>
+           
               <p>this is the 2nd popup triggered popup</p>
-              <button onClick={secondClick}>Open Popups</button>
+              <button onClick={secondClickyes}>Yes</button><button onClick={secondClickno}>No</button>
         </Popup>
 
         <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
-              <h3>my popup</h3>
+            
               <p>this is my first popup</p>
-              <button onClick={firstClick}>Open Popups</button>
+              <button onClick={firstClickyes}>Yes</button>
+              <button onClick={firstClickno}>No</button>
         </Popup>
        
     </div>

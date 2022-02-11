@@ -40,9 +40,10 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    person_name: req.body.person_name,
-    person_position: req.body.person_position,
-    person_level: req.body.person_level,
+    question_one: req.body.question_one,
+    question_two: req.body.question_two,
+    question_three: req.body.question_three,
+    question_four: req.body.question_four,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -50,35 +51,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
   });
 });
 
-// This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
-  let newvalues = {
-    $set: {
-      person_name: req.body.person_name,
-      person_position: req.body.person_position,
-      person_level: req.body.person_level,
-    },
-  };
-  db_connect
-    .collection("records")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err;
-      console.log("1 document updated");
-      response.json(res);
-    });
-});
 
-// This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
-    if (err) throw err;
-    console.log("1 document deleted");
-    response.status(obj);
-  });
-});
+
 
 module.exports = recordRoutes;
