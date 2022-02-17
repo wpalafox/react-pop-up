@@ -4,6 +4,7 @@ import beach from './pics/beach.jpeg';
 import './App.css';
 import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
+import { isPossiblePhoneNumber } from 'react-phone-number-input'
 
 function App() {
 
@@ -71,10 +72,11 @@ async function onSubmit(e) {
 
 
  function firstClickyes(){
-    setTimedPopup(false);
-    updateForm({ identity_number: numValue});
- 
-    setButtonPopup(true);
+    if(isPossiblePhoneNumber(numValue)){ 
+        setTimedPopup(false);
+        updateForm({identity_number: numValue});
+        setButtonPopup(true);
+    }
  }
 
  function firstClickno(){
@@ -204,7 +206,7 @@ function userSubmit(){
 
         <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
             
-            <p>Please Enter your phone number</p>
+            <p>Please Enter your 10 digit phone number (with country code) </p>
             <PhoneInput
               placeholder="Enter phone number" 
               className="form-control"
