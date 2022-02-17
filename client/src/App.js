@@ -1,9 +1,16 @@
 import Popup from './components/Popup';
 import { useState, useEffect } from 'react';
+import beach from './pics/beach.jpeg';
+import './App.css';
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 
 function App() {
+
+  const [numValue, setNumValue] = useState()
   
   const [form, setForm] = useState({
+    identity_number:"",
     question_one:"",
     question_two:"",
     question_three:"",
@@ -38,7 +45,7 @@ async function onSubmit(e) {
     return;
   });
 
-  setForm({ question_one: "", question_two: "", question_three: "", question_four: "",});
+  setForm({identity_number: "", question_one: "", question_two: "", question_three: "", question_four: "",});
   
 }
   
@@ -48,6 +55,8 @@ async function onSubmit(e) {
   const [button3Popup, setButton3Popup] = useState(false);
   const [button2Popup, setButton2Popup] = useState(false);
   const [buttonPopup, setButtonPopup] = useState(false);
+ 
+
   const [timedPopup, setTimedPopup] = useState(false);
   const [thankyouPopup, setThankYouPopup] = useState(false);
 
@@ -63,7 +72,8 @@ async function onSubmit(e) {
 
  function firstClickyes(){
     setTimedPopup(false);
-    updateForm({question_one: "yes"});
+    updateForm({ identity_number: numValue});
+ 
     setButtonPopup(true);
  }
 
@@ -140,7 +150,8 @@ function userSubmit(){
   return (
     <div className="App">
         <main>
-            <h1>Pop Application</h1>
+            
+            <img src={beach} className="App-logo pulse" alt="logo" />
             <br/><br/>
            
            
@@ -148,8 +159,9 @@ function userSubmit(){
         
         <Popup trigger={thankyouPopup} setTrigger={setThankYouPopup}>
               
-              <p>Thank you!</p>
-              <button onClick={userSubmit}>Close</button> 
+              <p>Is the background image a beach?</p>
+              <button onClick={userSubmit}>Yes</button> 
+              <button onClick={userSubmit}>No</button> 
             
         </Popup>
         
@@ -188,11 +200,22 @@ function userSubmit(){
               <button onClick={secondClickyes}>Yes</button><button onClick={secondClickno}>No</button>
         </Popup>
 
+      
+
         <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
             
-              <p>Allow this website to access your browser's cookies?</p>
-              <button onClick={firstClickyes}>Yes</button> <button onClick={firstClickno}>No</button>
-        </Popup>
+            <p>Please Enter your phone number</p>
+            <PhoneInput
+              placeholder="Enter phone number" 
+              className="form-control"
+              id="id-number"
+              value={numValue}
+              onChange={setNumValue}
+            />
+            
+            
+            <button onClick={firstClickyes}>Enter</button> 
+      </Popup>
        
     </div>
   );

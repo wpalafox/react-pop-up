@@ -40,6 +40,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
+    identity_number: req.body.identity_number,
     question_one: req.body.question_one,
     question_two: req.body.question_two,
     question_three: req.body.question_three,
