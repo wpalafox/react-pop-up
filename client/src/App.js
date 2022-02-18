@@ -7,8 +7,12 @@ import 'react-phone-number-input/style.css'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 
 function App() {
-
-  const [numValue, setNumValue] = useState()
+  
+  const [numValue, setNumValue] = useState();
+  //For the counter
+  const [count, setCount] = useState(0);
+  //For the random array
+  const [myArray, setArray] = useState([]);
 
   
   //declaring a new state variable. hooks
@@ -28,6 +32,7 @@ function App() {
   useEffect(() =>{ 
     setTimeout(() => {
       setTimedPopup(true);
+      randomizeArray();
     }, 4000);
   }, []);
 
@@ -47,6 +52,36 @@ function App() {
   return setForm((prev) => {
     return { ...prev, ...value };
   });
+}
+
+// Create handleIncrement event handler
+const handleIncrement = () => {
+  setCount(prevCount => prevCount + 1);
+};
+
+// This will handle array random
+const randomizeArray = ()=> {
+  
+  var state_array = [setButton0Popup, setButton1Popup, setButton2Popup, setButton3Popup, setButton4Popup]
+  
+  let currentIndex = state_array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element for yes.
+    [state_array[currentIndex], state_array[randomIndex]] = [
+      state_array[randomIndex], state_array[currentIndex]];
+
+      
+  }
+  setArray(...myArray, state_array);
+  
+  
 }
 
 // This function will handle the submission.
@@ -80,56 +115,38 @@ async function onSubmit(e) {
 
 
 
-/*
-function shuffle_1(array) {
-  let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element for yes.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-
-      
-  }
-
-  return array;
-}
 
 
-const shuffle_array_0 = shuffle_0(function_array);
-
-//The random states
-
-const state_array = [setButton0Popup, setButton1Popup, setButton2Popup, setButton3Popup, setButton4Popup]
-
-const shuffle_array_1 = shuffle_1(state_array);
 
 
-    // Create handleIncrement event handler
-    const handleIncrement = () => {
-      setCount(prevCount => prevCount + 1);
-    };
-
-    //Create handleDecrement event handler
-    const handleDecrement = () => {
-      setCount(prevCount => prevCount - 1);
-    };
 
 
- */
+
+
+
+
+
+
+    
+
+
+
  
  
   function firstPhone(){
     if(isPossiblePhoneNumber(numValue)){ 
         setTimedPopup(false);
         updateForm({identity_number: numValue});
-        setButton0Popup(true);
+        
+        console.log(myArray);
+        myArray[count](true);
+        console.log(count);
+        handleIncrement();
+      
+        //setButton0Popup(true);
+    
+        
+
         
 
               
@@ -145,7 +162,19 @@ const shuffle_array_1 = shuffle_1(state_array);
   
   setButton0Popup(false);
   updateForm({question_one: "1"});
-  setButton1Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
+  
+  
+  
+  
   
   
 }
@@ -154,28 +183,60 @@ function firstClickno(){
  
   setButton0Popup(false);
   updateForm({question_one: "0"});
-  setButton1Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
 }
 
  function secondClickyes(){
   setButton1Popup(false);
   updateForm({question_two: "1"});
-  setButton2Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
 }
 
 function secondClickno(){
   setButton1Popup(true);
   updateForm({question_two: "0"});
-  setButton2Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
 }
 
 function thirdClickyes(){
   setButton2Popup(false);
   updateForm({question_three: "1"});
-  setButton3Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
   
 }
@@ -183,7 +244,15 @@ function thirdClickyes(){
 function thirdClickno(){
   setButton2Popup(false);
   updateForm({question_three: "0"});
-  setButton3Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
   
 }
@@ -192,7 +261,15 @@ function fourthClickyes(){
   setButton3Popup(false);
   
   updateForm({question_four: "1"});
-  setButton4Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
 
 
  
@@ -202,7 +279,15 @@ function fourthClickno(){
   setButton3Popup(false);
  
   updateForm({question_four: "0"});
-  setButton4Popup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
  
   
@@ -213,7 +298,15 @@ function fifthClickyes(){
   
   setButton4Popup(false);
   updateForm({question_five: "1"});
-   setThankYouPopup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
  
 
@@ -225,7 +318,15 @@ function fifthClickno(){
   
   setButton4Popup(false);
   updateForm({question_five: "0"});
-  setThankYouPopup(true);
+  if(count >= 5){
+    setThankYouPopup(true);
+  }else{
+    myArray[count](true);
+    console.log(count);
+    handleIncrement();
+
+
+  }
   
  
   
