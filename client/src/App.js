@@ -144,7 +144,7 @@ const shuffle_array_1 = shuffle_1(state_array);
  function firstClickyes(){
   
   setButton0Popup(false);
-  updateForm({question_one: "yes"});
+  updateForm({question_one: "1"});
   setButton1Popup(true);
   
   
@@ -153,28 +153,28 @@ const shuffle_array_1 = shuffle_1(state_array);
 function firstClickno(){
  
   setButton0Popup(false);
-  updateForm({question_one: "no"});
+  updateForm({question_one: "0"});
   setButton1Popup(true);
   
 }
 
  function secondClickyes(){
   setButton1Popup(false);
-  updateForm({question_two: "yes"});
+  updateForm({question_two: "1"});
   setButton2Popup(true);
   
 }
 
 function secondClickno(){
   setButton1Popup(true);
-  updateForm({question_two: "no"});
+  updateForm({question_two: "0"});
   setButton2Popup(true);
   
 }
 
 function thirdClickyes(){
   setButton2Popup(false);
-  updateForm({question_three: "yes"});
+  updateForm({question_three: "1"});
   setButton3Popup(true);
   
   
@@ -182,7 +182,7 @@ function thirdClickyes(){
 
 function thirdClickno(){
   setButton2Popup(false);
-  updateForm({question_three: "no"});
+  updateForm({question_three: "0"});
   setButton3Popup(true);
   
   
@@ -191,7 +191,7 @@ function thirdClickno(){
 function fourthClickyes(){
   setButton3Popup(false);
   
-  updateForm({question_four: "yes"});
+  updateForm({question_four: "1"});
   setButton4Popup(true);
 
 
@@ -201,7 +201,7 @@ function fourthClickyes(){
 function fourthClickno(){
   setButton3Popup(false);
  
-  updateForm({question_four: "no"});
+  updateForm({question_four: "0"});
   setButton4Popup(true);
   
  
@@ -212,7 +212,7 @@ function fourthClickno(){
 function fifthClickyes(){
   
   setButton4Popup(false);
-  updateForm({question_five: "yes"});
+  updateForm({question_five: "1"});
    setThankYouPopup(true);
   
  
@@ -224,7 +224,7 @@ function fifthClickyes(){
 function fifthClickno(){
   
   setButton4Popup(false);
-  updateForm({question_five: "no"});
+  updateForm({question_five: "0"});
   setThankYouPopup(true);
   
  
