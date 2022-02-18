@@ -45,6 +45,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
     question_two: req.body.question_two,
     question_three: req.body.question_three,
     question_four: req.body.question_four,
+    question_five: req.body.question_five,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
