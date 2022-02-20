@@ -211,7 +211,7 @@ function firstClickno(){
 }
 
 function secondClickno(){
-  setButton1Popup(true);
+  setButton1Popup(false);
   updateForm({question_two: "0"});
   if(count >= 5){
     setThankYouPopup(true);
