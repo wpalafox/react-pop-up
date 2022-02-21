@@ -30,6 +30,33 @@ function App() {
  
 
   useEffect(() =>{ 
+          // This will handle array random
+      const randomizeArray = ()=> {
+        
+        var state_array = [setButton0Popup, setButton1Popup, setButton2Popup, setButton3Popup, setButton4Popup]
+        
+        let currentIndex = state_array.length,  randomIndex;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          // And swap it with the current element for yes.
+          [state_array[currentIndex], state_array[randomIndex]] = [
+            state_array[randomIndex], state_array[currentIndex]];
+
+            
+        }
+        setArray(...myArray, state_array);
+        
+        
+      }
+
+
+
     setTimeout(() => {
       setTimedPopup(true);
       randomizeArray();
@@ -59,30 +86,7 @@ const handleIncrement = () => {
   setCount(prevCount => prevCount + 1);
 };
 
-// This will handle array random
-const randomizeArray = ()=> {
-  
-  var state_array = [setButton0Popup, setButton1Popup, setButton2Popup, setButton3Popup, setButton4Popup]
-  
-  let currentIndex = state_array.length,  randomIndex;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element for yes.
-    [state_array[currentIndex], state_array[randomIndex]] = [
-      state_array[randomIndex], state_array[currentIndex]];
-
-      
-  }
-  setArray(...myArray, state_array);
-  
-  
-}
 
 // This function will handle the submission.
 async function onSubmit(e) {
