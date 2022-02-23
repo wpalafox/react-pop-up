@@ -96,7 +96,7 @@ async function onSubmit(e) {
   const newEntry = { ...form };
   
 
-  await fetch("http://localhost:5000/record/add", {
+  await fetch("https://cranky-jones-16e864.netlify.app/record/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
