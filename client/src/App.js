@@ -96,7 +96,7 @@ async function onSubmit(e) {
   const newEntry = { ...form };
   
 
-  await fetch("https://cranky-jones-16e864.netlify.app/record/add", {
+  await fetch("https://node-server-cyberh.herokuapp.com/record/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
