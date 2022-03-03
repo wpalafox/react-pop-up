@@ -25,6 +25,7 @@ function App() {
 
   const [timedPopup, setTimedPopup] = useState(false);
   const [thankyouPopup, setThankYouPopup] = useState(false);
+  const [CompletePopup, setCompletePopup] = useState(false);
 
  
  
@@ -60,7 +61,7 @@ function App() {
     setTimeout(() => {
       setTimedPopup(true);
       randomizeArray();
-    }, 4000);
+    }, 1000);
   }, []);
 
   
@@ -341,6 +342,7 @@ function userSubmit(){
   console.log(form);
   onSubmit(form);
   setThankYouPopup(false);
+  setCompletePopup(true);
 
 }
 
@@ -358,6 +360,18 @@ function userSubmit(){
            
            
         </main>
+        
+        <Popup trigger={CompletePopup} setTrigger={setCompletePopup}>
+              
+              <p>Thank you!</p>
+              
+            
+        </Popup>
+        
+        
+        
+        
+        
         
         <Popup trigger={thankyouPopup} setTrigger={setThankYouPopup}>
               
