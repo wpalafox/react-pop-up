@@ -346,6 +346,11 @@ function userSubmit(){
 
 }
 
+function completeClose(){
+  
+  setCompletePopup(false);
+
+}
 
  
 
@@ -364,6 +369,8 @@ function userSubmit(){
         <Popup trigger={CompletePopup} setTrigger={setCompletePopup}>
               
               <p>Thank you!</p>
+
+              <button onClick={completeClose}>Close</button> 
               
             
         </Popup>
